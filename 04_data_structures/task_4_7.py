@@ -9,3 +9,6 @@
 '''
 
 MAC = 'AAAA:BBBB:CCCC'
+MAC = MAC.replace(':', '')
+print(*[bin(int(MAC[i:i+2], 16))[2:].zfill(8) for i in range(len(MAC)-2)])
+	

@@ -14,3 +14,7 @@
 
 command1 = 'switchport trunk allowed vlan 1,3,10,20,30,100'
 command2 = 'switchport trunk allowed vlan 1,3,100,200,300'
+
+vlans1 = [int(x) for x in command1.split(' ')[-1].split(',')]
+vlans2 = [int(x) for x in command2.split(' ')[-1].split(',')]
+print([x for x in vlans1 if x in vlans2])
