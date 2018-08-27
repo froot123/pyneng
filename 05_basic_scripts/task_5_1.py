@@ -19,3 +19,24 @@ Mask:
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+
+prefix = input('Network: ')
+net_addr, mask = prefix.split('/')[0].split('.'), int(prefix.split('/')[1])
+net_addr_bin = [bin(int(x))[2:].zfill(8) for x in net_addr]
+mask_bin = ('1' * mask) + ('0' * (32-mask))
+mask_bin_list = [mask_bin[0:8], mask_bin[8:16], mask_bin[16:24], mask_bin[24:32]]
+
+print("""Network:
+{:<8}  {:<8}  {:<8}  {:<8}
+{}  {}  {}  {}
+
+Mask:
+/{}
+{:<8}  {:<8}  {:<8}  {:<8}
+{}  {}  {}  {}
+""".format(*net_addr, 
+	*net_addr_bin,
+	mask,
+	*[int(x,2) for x in mask_bin_list],
+	*mask_bin_list))
+	
