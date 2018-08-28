@@ -21,5 +21,14 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
+from task_15_4 import parse_sh_ip_int_br
+
 
 headers = ['interface', 'address', 'status', 'protocol']
+
+
+def convert_to_dict(headers, stuff):
+	return list(map(lambda x: dict(zip(headers, x)), stuff))
+	
+print(convert_to_dict(headers, parse_sh_ip_int_br('sh_ip_int_br_2.txt')))
+	

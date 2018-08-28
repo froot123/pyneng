@@ -29,3 +29,5 @@
 > pip install graphviz
 
 '''
+
+from draw_network_graph import draw_topology

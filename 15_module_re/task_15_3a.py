@@ -20,3 +20,22 @@
 диапазоны адресов и так далее, так как обрабатывается вывод команды, а не ввод пользователя.
 
 '''
+
+import re
+
+def parse_cfg(filname):
+	result = {}
+	r = re.compile('\s'
+			'(?P<intf>\w+\d+\/\d+)'
+			'.+?'
+			'(?P<ip>\d+\.\d+\.\d+\.\d+)'
+			'\s'
+			'(?P<mask>\d+\.\d+\.\d+\.\d+)', re.DOTALL)
+	with open(filname, 'r') as f:
+		for section in f.read().split('!'):
+			m = re.search(r, section)
+			if m:
+				result[m.group('intf')] = (m.group('ip'), m.group('mask'))
+	return result
+
+print(parse_cfg('config_r1.txt'))
